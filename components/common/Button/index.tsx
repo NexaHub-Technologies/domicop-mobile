@@ -28,7 +28,7 @@ const createStyles = (colors: typeof lightColors) =>
     },
     text: {
       fontFamily: theme.typography.fontFamily.headline,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
       textAlign: "center",
     },
     iconLeft: {

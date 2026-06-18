@@ -157,18 +157,18 @@ const createStyles = (colors: NotificationCardColors) =>
     title: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       flex: 1,
       marginRight: theme.spacing.sm,
     },
     readText: {
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
     },
     timestamp: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
     },
@@ -189,7 +189,7 @@ const createStyles = (colors: NotificationCardColors) =>
     actionButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
   });

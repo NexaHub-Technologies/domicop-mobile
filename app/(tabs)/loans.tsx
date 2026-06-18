@@ -176,7 +176,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -221,7 +221,7 @@ const createStyles = (colors: typeof lightColors) =>
     applyButtonTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     applyButtonSubtitle: {
@@ -239,13 +239,13 @@ const createStyles = (colors: typeof lightColors) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     viewAllText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.primary,
     },
     loansList: {

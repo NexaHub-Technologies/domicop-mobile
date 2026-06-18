@@ -31,7 +31,7 @@ const createStyles = (colors: typeof lightColors) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -79,7 +79,7 @@ const createStyles = (colors: typeof lightColors) =>
     itemTitle: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -124,7 +124,6 @@ const SettingsItem: React.FC<SettingsItemProps> = ({
       onDeleteAccount();
     } else if (item.route === "/privacy") {
       // Handle privacy policy
-      console.log("Privacy policy pressed");
     } else {
       router.push(item.route as any);
     }

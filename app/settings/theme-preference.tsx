@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.lg,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
   },
   saveButton: {
     paddingHorizontal: themeConfig.spacing.md,
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
   saveButtonText: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.base,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
   },
   scrollView: {
     flex: 1,
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: typography.fontFamily.headline,
     fontSize: themeConfig.spacing["2xl"],
-    fontWeight: typography.fontWeight.extrabold as any,
+    fontWeight: typography.fontWeight.extrabold,
     marginBottom: themeConfig.spacing.xs,
   },
   subtitle: {
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
   themeTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.lg,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     marginBottom: 4,
   },
   themeDescription: {
@@ -500,7 +500,7 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.base,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     marginBottom: 4,
   },
   infoText: {
@@ -540,6 +540,6 @@ const styles = StyleSheet.create({
   saveButtonLargeText: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.base,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
   },
 });

@@ -107,7 +107,7 @@ const createStyles = (colors: SuccessModalColors) =>
     title: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       textAlign: "center",
       marginBottom: theme.spacing.sm,

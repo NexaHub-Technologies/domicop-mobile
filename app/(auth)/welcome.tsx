@@ -118,7 +118,7 @@ const createStyles = (colors: typeof lightColors) =>
     termsText: {
       fontFamily: theme.typography.fontFamily.label,
       fontSize: theme.typography.size.xs,
-      fontWeight: theme.typography.fontWeight.semibold as any,
+      fontWeight: theme.typography.fontWeight.semibold,
       color: colors.onSurfaceVariant,
       textAlign: "center",
       textTransform: "uppercase",

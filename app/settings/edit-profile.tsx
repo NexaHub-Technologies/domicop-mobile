@@ -388,7 +388,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     keyboardView: {
       flex: 1,
@@ -403,7 +403,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
       marginBottom: theme.spacing.lg,
     },
@@ -416,7 +416,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     label: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: 'uppercase',
       letterSpacing: 1,
@@ -506,7 +506,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     saveButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
   });

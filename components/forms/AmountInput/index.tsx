@@ -77,7 +77,7 @@ const createStyles = (colors: AmountColors) =>
     label: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -99,7 +99,7 @@ const createStyles = (colors: AmountColors) =>
     currencySymbol: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       marginRight: theme.spacing.sm,
     },
@@ -107,7 +107,7 @@ const createStyles = (colors: AmountColors) =>
       flex: 1,
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       padding: 0,
     },

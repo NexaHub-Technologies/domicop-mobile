@@ -226,7 +226,7 @@ const getStyles = (colors: typeof lightColors) => StyleSheet.create({
   headerTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.lg,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
   },
   scrollView: {
     flex: 1,
@@ -250,7 +250,7 @@ const getStyles = (colors: typeof lightColors) => StyleSheet.create({
   heroSubtitle: {
     fontFamily: typography.fontFamily.label,
     fontSize: typography.size.xs,
-    fontWeight: typography.fontWeight.semibold as any,
+    fontWeight: typography.fontWeight.semibold,
     color: colors.primary,
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -259,7 +259,7 @@ const getStyles = (colors: typeof lightColors) => StyleSheet.create({
   heroTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size['2xl'],
-    fontWeight: typography.fontWeight.extrabold as any,
+    fontWeight: typography.fontWeight.extrabold,
     color: colors.onSurface,
     marginBottom: theme.spacing.xs,
   },
@@ -304,7 +304,7 @@ const getStyles = (colors: typeof lightColors) => StyleSheet.create({
   submitButtonText: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.base,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onPrimary,
   },
   termsText: {

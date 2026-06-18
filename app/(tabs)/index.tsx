@@ -4,37 +4,28 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { theme } from '@/styles/theme';
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader';
-import { StatusCards } from '@/components/dashboard/StatusCards';
+import { ContributionSummary } from '@/components/dashboard/ContributionSummary';
 import { QuickActions } from '@/components/dashboard/QuickActions';
 import { TransactionList, RecentTransaction } from '@/components/dashboard/TransactionList';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useSavingsSummary } from '@/hooks/useSavingsSummary';
 import { useContributions } from '@/hooks/useContributions';
-
-const formatMonth = (monthStr: string): string => {
-  const [year, month] = monthStr.split('-');
-  const date = new Date(parseInt(year), parseInt(month) - 1);
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-};
+import { computeAllocationTotals } from '@/lib/utils/contributionAllocation';
+import { formatMonth } from '@/data/mockData';
 
 export default function DashboardScreen() {
   const { colors, isDarkMode } = useTheme();
   const {
-    summary,
-    isLoading: isSummaryLoading,
-    isRefreshing: isSummaryRefreshing,
-    isOffline,
-    error: summaryError,
-    refresh: refreshSummary,
-  } = useSavingsSummary();
-
-  const {
     contributions,
+    totalBalance,
+    yearBalance,
     isLoading: isContributionsLoading,
-    isRefreshing: isContributionsRefreshing,
-    error: contributionsError,
+    isRefreshing,
+    error,
+    isOffline,
     refresh: refreshContributions,
   } = useContributions();
+
+  const allocationTotals = computeAllocationTotals(contributions);
 
   const recentTransactions: RecentTransaction[] = contributions.slice(0, 5).map((c) => ({
     id: c.id,
@@ -46,13 +37,11 @@ export default function DashboardScreen() {
     status: c.status,
   }));
 
-  const isLoading = isSummaryLoading && isContributionsLoading;
-  const isRefreshing = isSummaryRefreshing || isContributionsRefreshing;
-  const error = summaryError || contributionsError;
+  const isLoading = isContributionsLoading;
 
   const onRefresh = React.useCallback(() => {
-    Promise.all([refreshSummary(), refreshContributions()]);
-  }, [refreshSummary, refreshContributions]);
+    refreshContributions();
+  }, [refreshContributions]);
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
@@ -75,8 +64,13 @@ export default function DashboardScreen() {
           />
         }
       >
-        {/* Status Cards - Total Saved & Loan Balance */}
-        <StatusCards />
+        {/* Contribution Summary - Total & Allocation Breakdown */}
+        <ContributionSummary
+          totalBalance={totalBalance}
+          yearBalance={yearBalance}
+          allocationTotals={allocationTotals}
+          isLoading={isContributionsLoading}
+        />
 
         {/* Quick Actions - Deposit & Apply */}
         <QuickActions />

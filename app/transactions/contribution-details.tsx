@@ -15,7 +15,7 @@ import Animated, { FadeIn, FadeInUp } from "react-native-reanimated";
 import { useTheme, lightColors } from "@/contexts/ThemeContext";
 import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
-import { formatCurrency } from "@/data/mockData";
+import { formatCurrency, formatMonth } from "@/data/mockData";
 import { contributionsApi } from "@/lib/api/contributions.api";
 import { Contribution } from "@/lib/types/contributions";
 
@@ -73,12 +73,6 @@ export default function ContributionDetailsScreen() {
     router.push(`/transactions/contribution-details-info?id=${contributionId}`);
   };
 
-  const formatMonth = (monthStr: string) => {
-    const [year, month] = monthStr.split("-");
-    const date = new Date(parseInt(year), parseInt(month) - 1);
-    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-  };
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case "verified":
@@ -101,7 +95,7 @@ export default function ContributionDetailsScreen() {
         <View style={styles.headerContent}>
           <View style={styles.backButton} />
           <Text style={[styles.headerTitle, { color: colors.primary }]}>
-            Savings Overview
+            Contribution Overview
           </Text>
           <View style={styles.backButton} />
         </View>
@@ -332,7 +326,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -374,14 +368,14 @@ const createStyles = (colors: typeof lightColors) =>
     overviewTitle: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: `${colors.onPrimary}90`,
       marginBottom: theme.spacing.xs,
     },
     overviewAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: theme.spacing["3xl"],
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
       marginBottom: theme.spacing.base,
     },
@@ -398,7 +392,7 @@ const createStyles = (colors: typeof lightColors) =>
     statusText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     statsGrid: {
@@ -416,7 +410,7 @@ const createStyles = (colors: typeof lightColors) =>
     statValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
       marginBottom: 2,
     },
@@ -451,7 +445,7 @@ const createStyles = (colors: typeof lightColors) =>
     addButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     historySection: {
@@ -466,13 +460,13 @@ const createStyles = (colors: typeof lightColors) =>
     historyTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     viewAllText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.primary,
     },
     transactionsList: {
@@ -515,7 +509,7 @@ const createStyles = (colors: typeof lightColors) =>
     transactionTitle: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -530,13 +524,13 @@ const createStyles = (colors: typeof lightColors) =>
     transactionAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       marginBottom: 2,
     },
     transactionStatus: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
     },
     bottomPadding: {
@@ -575,7 +569,7 @@ const createStyles = (colors: typeof lightColors) =>
     retryButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     emptyContainer: {
@@ -587,7 +581,7 @@ const createStyles = (colors: typeof lightColors) =>
     emptyTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginTop: theme.spacing.base,
     },

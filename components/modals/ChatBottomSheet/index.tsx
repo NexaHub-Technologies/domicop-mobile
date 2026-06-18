@@ -216,7 +216,7 @@ const createStyles = (colors: ChatBottomSheetColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     headerSubtitle: {
@@ -239,7 +239,7 @@ const createStyles = (colors: ChatBottomSheetColors) =>
     emptyText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginTop: theme.spacing.base,
     },

@@ -65,12 +65,6 @@ export const colors = {
   outline: '#cbd5e1',
   outlineVariant: '#e2e8f0',
 
-  // Legacy aliases for backward compatibility
-  text: '#0f172a',
-  textSecondary: '#475569',
-  border: '#cbd5e1',
-  success: '#22c55e',
-  warning: '#f59e0b',
 } as const;
 
 export type Colors = typeof colors;

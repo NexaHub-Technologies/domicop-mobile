@@ -45,7 +45,7 @@ const createStyles = (colors: typeof lightColors) =>
     title: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: 4,
     },

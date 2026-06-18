@@ -12,7 +12,7 @@ import Animated, {
 import { useTheme, lightColors } from "@/contexts/ThemeContext";
 import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
-import { formatCurrency } from "@/data/mockData";
+import { formatCurrency, getTransactionIcon, getTransactionIconColor, getTransactionBgColor, formatDate, getDefaultTitle, type TransactionType } from "@/data/mockData";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -25,80 +25,6 @@ export interface RecentTransaction {
   date: string;
   status: string;
 }
-
-const getTransactionIcon = (type: string): string => {
-  switch (type) {
-    case "contribution":
-      return "trending-up";
-    case "interest":
-      return "stars";
-    case "loan_repayment":
-      return "keyboard-double-arrow-right";
-    case "fee":
-      return "history-edu";
-    case "withdrawal":
-      return "payments";
-    default:
-      return "receipt";
-  }
-};
-
-const getTransactionIconColor = (type: string): string => {
-  switch (type) {
-    case "contribution":
-    case "interest":
-      return "#22c55e";
-    case "loan_repayment":
-    case "fee":
-    case "withdrawal":
-      return "#0f172a";
-    default:
-      return "#475569";
-  }
-};
-
-const getTransactionBgColor = (type: string): string => {
-  switch (type) {
-    case "contribution":
-    case "interest":
-      return "#ecfdf5";
-    case "loan_repayment":
-    case "fee":
-      return "#eff6ff";
-    case "withdrawal":
-      return "#f1f5f9";
-    default:
-      return "#f1f5f9";
-  }
-};
-
-const getDefaultTitle = (type: string, date: string): string => {
-  switch (type) {
-    case "contribution":
-      return "Monthly Contribution";
-    case "interest":
-      return "Interest Credited";
-    case "loan_repayment":
-      return "Loan Repayment";
-    case "fee":
-      return "Processing Fee";
-    case "withdrawal":
-      return "Withdrawal";
-    default: {
-      const d = new Date(date);
-      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-    }
-  }
-};
-
-const formatDate = (dateStr: string): string => {
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("en-NG", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-};
 
 interface TransactionItemProps {
   transaction: RecentTransaction;
@@ -138,7 +64,7 @@ const createTransactionItemStyles = (colors: typeof lightColors) =>
     transactionTitle: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -153,13 +79,13 @@ const createTransactionItemStyles = (colors: typeof lightColors) =>
     transactionAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       marginBottom: 2,
     },
     transactionStatus: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
     },
   });
@@ -179,7 +105,7 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
 
   const handlePress = () => {
     if (transaction.category === "savings") {
-      router.push(`/savings/${transaction.id}`);
+      router.push(`/contributions/${transaction.id}`);
     }
   };
 
@@ -191,9 +117,9 @@ const TransactionItem: React.FC<TransactionItemProps> = ({
     scale.value = withSpring(1, { damping: 15, stiffness: 300 });
   };
 
-  const iconName = getTransactionIcon(transaction.type);
-  const iconColor = getTransactionIconColor(transaction.type);
-  const bgColor = getTransactionBgColor(transaction.type);
+  const iconName = getTransactionIcon(transaction.type as TransactionType);
+  const iconColor = getTransactionIconColor(transaction.type as TransactionType);
+  const bgColor = getTransactionBgColor(transaction.type as TransactionType);
   const amountColor = transaction.amount > 0 ? "#22c55e" : colors.onSurface;
   const title = transaction.title || getDefaultTitle(transaction.type, transaction.date);
 
@@ -262,7 +188,7 @@ const createCategoryHeaderStyles = (colors: typeof lightColors) =>
     categoryText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -275,7 +201,7 @@ const createCategoryHeaderStyles = (colors: typeof lightColors) =>
     seeAllText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
   });
@@ -287,7 +213,7 @@ const CategoryHeader: React.FC<CategoryHeaderProps> = ({ category, colors }) => 
 
   const handleSeeAll = () => {
     if (isSavings) {
-      router.push("/(tabs)/savings");
+      router.push("/(tabs)/contributions");
     } else {
       router.push("/(tabs)/loans");
     }
@@ -339,7 +265,7 @@ const createStyles = (colors: typeof lightColors) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -352,7 +278,7 @@ const createStyles = (colors: typeof lightColors) =>
     viewArchiveText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
     listContainer: {
@@ -419,7 +345,7 @@ const createStyles = (colors: typeof lightColors) =>
     retryButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     emptyContainer: {
@@ -440,7 +366,7 @@ const createStyles = (colors: typeof lightColors) =>
     emptyTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.sm,
     },
@@ -527,7 +453,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   const hasTransactions = transactions.length > 0;
 
   const handleViewArchive = () => {
-    router.push("/(tabs)/savings");
+    router.push("/(tabs)/contributions");
   };
 
   const handleRetry = () => {

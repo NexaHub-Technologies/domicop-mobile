@@ -46,7 +46,7 @@ const createStyles = (colors: SecurityBadgeColors) =>
     text: {
       fontFamily: theme.typography.fontFamily.label,
       fontSize: theme.typography.size.xs,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
       color: colors.onSurface,
       textTransform: "uppercase",
       letterSpacing: theme.typography.letterSpacing.tight,

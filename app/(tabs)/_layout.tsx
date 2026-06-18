@@ -22,9 +22,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="savings"
+        name="contributions"
         options={{
-          title: "Savings",
+          title: "Contributions",
         }}
       />
       <Tabs.Screen

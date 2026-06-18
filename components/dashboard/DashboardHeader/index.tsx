@@ -7,6 +7,7 @@ import { useTheme, lightColors } from "@/contexts/ThemeContext";
 import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
 import { signUp } from "@/lib/api/sign-up.api";
+import { getInitials } from "@/data/mockData";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -47,7 +48,7 @@ const createStyles = (colors: typeof lightColors) =>
     avatarText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.md,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
     textContainer: {
@@ -56,7 +57,7 @@ const createStyles = (colors: typeof lightColors) =>
     welcomeText: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -65,7 +66,7 @@ const createStyles = (colors: typeof lightColors) =>
     nameText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       lineHeight: 20,
     },
@@ -101,15 +102,6 @@ export const DashboardHeader: React.FC = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const getInitials = (name: string): string => {
-    return name
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
   };
 
   const handleNotificationsPress = () => {

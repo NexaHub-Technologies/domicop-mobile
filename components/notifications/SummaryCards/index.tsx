@@ -91,7 +91,7 @@ const createStyles = (colors: SummaryCardsColors) =>
     unreadLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: `${colors.onPrimary}80`,
       textTransform: "uppercase",
       letterSpacing: 2,
@@ -100,7 +100,7 @@ const createStyles = (colors: SummaryCardsColors) =>
     unreadCount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["2xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onPrimary,
       marginBottom: 4,
     },
@@ -135,7 +135,7 @@ const createStyles = (colors: SummaryCardsColors) =>
     goalLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 2,
@@ -150,13 +150,13 @@ const createStyles = (colors: SummaryCardsColors) =>
     goalValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     goalChange: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
       marginBottom: 2,
     },

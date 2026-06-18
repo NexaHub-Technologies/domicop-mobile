@@ -2,10 +2,14 @@ import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
 import { Paths, File, Directory } from "expo-file-system";
 import { formatCurrencyNoSign, Transaction } from "@/data/mockData";
+import { getAllocationSummary } from "@/lib/utils/contributionAllocation";
 
 export const generateReceiptHTML = (transaction: Transaction): string => {
   const amount = formatCurrencyNoSign(Math.abs(transaction.amount));
   const isContribution = transaction.amount > 0;
+  const allocationSummary = isContribution
+    ? getAllocationSummary(Math.abs(transaction.amount))
+    : null;
 
   return `
     <!DOCTYPE html>
@@ -154,6 +158,86 @@ export const generateReceiptHTML = (transaction: Transaction): string => {
             font-size: 12px;
           }
 
+          .allocation-section {
+            padding: 30px;
+            border-top: 2px dashed #e2e8f0;
+          }
+
+          .allocation-title {
+            font-size: 14px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 600;
+          }
+
+          .allocation-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+          }
+
+          .allocation-row:last-child {
+            border-bottom: none;
+          }
+
+          .allocation-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .allocation-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+          }
+
+          .allocation-name {
+            color: #0f172a;
+            font-size: 14px;
+            font-weight: 500;
+          }
+
+          .allocation-value {
+            text-align: right;
+          }
+
+          .allocation-amount {
+            color: #0f172a;
+            font-size: 14px;
+            font-weight: 600;
+          }
+
+          .allocation-percent {
+            color: #64748b;
+            font-size: 12px;
+          }
+
+          .allocation-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+            margin-top: 4px;
+            border-top: 2px solid #e2e8f0;
+          }
+
+          .allocation-total-label {
+            color: #0f172a;
+            font-size: 14px;
+            font-weight: 700;
+          }
+
+          .allocation-total-value {
+            color: #0b50da;
+            font-size: 18px;
+            font-weight: 800;
+          }
+
           .footer-note {
             color: #64748b;
             font-size: 11px;
@@ -194,6 +278,66 @@ export const generateReceiptHTML = (transaction: Transaction): string => {
             </div>
           </div>
 
+          ${allocationSummary ? `
+          <div class="allocation-section">
+            <div class="allocation-title">Allocation Breakdown</div>
+
+            <div class="allocation-row">
+              <div class="allocation-label">
+                <span class="allocation-dot" style="background: #0b50da;"></span>
+                <span class="allocation-name">Shares</span>
+              </div>
+              <div class="allocation-value">
+                <div class="allocation-amount">₦${formatCurrencyNoSign(allocationSummary.allocation.shares)}</div>
+                <div class="allocation-percent">${allocationSummary.percentages.shares.toFixed(1)}%</div>
+              </div>
+            </div>
+
+            <div class="allocation-row">
+              <div class="allocation-label">
+                <span class="allocation-dot" style="background: #ea580c;"></span>
+                <span class="allocation-name">Social</span>
+              </div>
+              <div class="allocation-value">
+                <div class="allocation-amount">₦${formatCurrencyNoSign(allocationSummary.allocation.social)}</div>
+                <div class="allocation-percent">${allocationSummary.percentages.social.toFixed(1)}%</div>
+              </div>
+            </div>
+
+            <div class="allocation-row">
+              <div class="allocation-label">
+                <span class="allocation-dot" style="background: #22c55e;"></span>
+                <span class="allocation-name">Savings</span>
+              </div>
+              <div class="allocation-value">
+                <div class="allocation-amount">₦${formatCurrencyNoSign(allocationSummary.allocation.savings)}</div>
+                <div class="allocation-percent">${allocationSummary.percentages.savings.toFixed(1)}%</div>
+              </div>
+            </div>
+
+            <div class="allocation-row">
+              <div class="allocation-label">
+                <span class="allocation-dot" style="background: #f59e0b;"></span>
+                <span class="allocation-name">Deposit</span>
+              </div>
+              <div class="allocation-value">
+                <div class="allocation-amount">₦${formatCurrencyNoSign(allocationSummary.allocation.deposit)}</div>
+                <div class="allocation-percent">${allocationSummary.percentages.deposit.toFixed(1)}%</div>
+              </div>
+            </div>
+
+            <div class="allocation-total">
+              <span class="allocation-total-label">Total Credited</span>
+              <span class="allocation-total-value">₦${formatCurrencyNoSign(
+                allocationSummary.allocation.shares +
+                  allocationSummary.allocation.social +
+                  allocationSummary.allocation.savings +
+                  allocationSummary.allocation.deposit,
+              )}</span>
+            </div>
+          </div>
+          ` : ''}
+
           <div class="footer">
             <div class="footer-text">Thank you for your patronage!</div>
             <div class="footer-note">This is an electronically generated receipt</div>
@@ -225,7 +369,6 @@ export const generateReceipt = async (transaction: Transaction): Promise<string>
     const sourceFile = new File(uri);
 
     if (!sourceFile.exists) {
-      console.warn("Source file does not exist:", uri);
       return uri;
     }
 
@@ -238,7 +381,6 @@ export const generateReceipt = async (transaction: Transaction): Promise<string>
       await sourceFile.copy(destinationFile);
       return destinationFile.uri;
     } catch (copyError) {
-      console.warn("Could not copy file, returning original:", copyError);
       return uri;
     }
   } catch (error) {
@@ -267,12 +409,10 @@ export const shareReceipt = async (receiptUri: string) => {
 export const downloadReceipt = async (transaction: Transaction): Promise<string> => {
   const generatedUri = await generateReceipt(transaction);
 
-  console.log("Generated URI:", generatedUri);
 
   try {
     const savedDir = await Directory.pickDirectoryAsync();
 
-    console.log("Selected directory URI:", savedDir?.uri);
 
     if (!savedDir) {
       return generatedUri;
@@ -280,23 +420,18 @@ export const downloadReceipt = async (transaction: Transaction): Promise<string>
 
     const receiptName = `DOMICOP-Receipt-${transaction.id}.pdf`;
 
-    console.log("Creating file in selected directory...");
     const destinationFile = savedDir.createFile(receiptName, "application/pdf");
 
-    console.log("Destination file created, URI:", destinationFile.uri);
 
     const sourceFile = new File(generatedUri);
-    console.log("Source file exists:", sourceFile.exists);
 
     if (!sourceFile.exists) {
       throw new Error("Generated file does not exist");
     }
 
-    console.log("Copying file content...");
     const sourceContent = await sourceFile.bytes();
     destinationFile.write(sourceContent);
 
-    console.log("Copy successful");
     return destinationFile.uri;
   } catch (error) {
     console.error("Error saving to external directory:", error);

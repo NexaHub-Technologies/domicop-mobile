@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useTheme, lightColors } from "@/contexts/ThemeContext";
 import { theme } from "@/styles/theme";
-import { SymbolView, SFSymbol } from "expo-symbols";
+import { MaterialIcons } from "@expo/vector-icons";
 
 interface InputProps {
   label?: string;
@@ -22,8 +22,8 @@ interface InputProps {
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
   error?: string;
   helper?: string;
-  leftIcon?: SFSymbol;
-  rightIcon?: SFSymbol;
+  leftIcon?: keyof typeof MaterialIcons.glyphMap;
+  rightIcon?: keyof typeof MaterialIcons.glyphMap;
   onRightIconPress?: () => void;
   editable?: boolean;
   style?: ViewStyle;
@@ -40,7 +40,7 @@ const createStyles = (colors: typeof lightColors) =>
     label: {
       fontFamily: theme.typography.fontFamily.label,
       fontSize: theme.typography.size.xs,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: theme.typography.letterSpacing.widest,
@@ -79,7 +79,7 @@ const createStyles = (colors: typeof lightColors) =>
       flex: 1,
       fontFamily: theme.typography.fontFamily.body,
       fontSize: theme.typography.size.md,
-      fontWeight: theme.typography.fontWeight.medium as any,
+      fontWeight: theme.typography.fontWeight.medium,
       color: colors.onSurface,
       height: "100%",
     },
@@ -141,10 +141,10 @@ export const Input: React.FC<InputProps> = ({
         ]}
       >
         {leftIcon && (
-          <SymbolView
+          <MaterialIcons
             name={leftIcon}
             size={20}
-            tintColor={colors.onSurfaceVariant}
+            color={colors.onSurfaceVariant}
             style={styles.leftIcon}
           />
         )}
@@ -170,21 +170,21 @@ export const Input: React.FC<InputProps> = ({
         />
         {secureTextEntry && (
           <TouchableOpacity onPress={togglePasswordVisibility} style={styles.rightIcon}>
-            <SymbolView
-              name={isPasswordVisible ? "eye.slash" : "eye"}
+            <MaterialIcons
+              name={isPasswordVisible ? "visibility-off" : "visibility"}
               size={20}
-              tintColor={colors.onSurfaceVariant}
+              color={colors.onSurfaceVariant}
             />
           </TouchableOpacity>
         )}
         {rightIcon && !secureTextEntry && onRightIconPress && (
           <TouchableOpacity onPress={onRightIconPress} style={styles.rightIcon}>
-            <SymbolView name={rightIcon} size={20} tintColor={colors.onSurfaceVariant} />
+            <MaterialIcons name={rightIcon} size={20} color={colors.onSurfaceVariant} />
           </TouchableOpacity>
         )}
         {rightIcon && !secureTextEntry && !onRightIconPress && (
           <View style={styles.rightIcon}>
-            <SymbolView name={rightIcon} size={20} tintColor={colors.onSurfaceVariant} />
+            <MaterialIcons name={rightIcon} size={20} color={colors.onSurfaceVariant} />
           </View>
         )}
       </View>

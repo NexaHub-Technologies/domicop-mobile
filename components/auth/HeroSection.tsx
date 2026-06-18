@@ -147,7 +147,7 @@ const createStyles = (colors: HeroSectionColors) =>
     title: {
       fontFamily: theme.typography.fontFamily.headline,
       fontSize: theme.typography.size["2xl"],
-      fontWeight: theme.typography.fontWeight.extrabold as any,
+      fontWeight: theme.typography.fontWeight.extrabold,
       color: colors.onSurface,
       textAlign: "center",
       marginBottom: theme.spacing.md,

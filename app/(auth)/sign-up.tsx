@@ -581,7 +581,7 @@ const createStyles = (colors: typeof lightColors) =>
     stepNumber: {
       fontFamily: theme.typography.fontFamily.headline,
       fontSize: theme.typography.size.sm,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
     },
     stepNumberActive: {
@@ -603,7 +603,7 @@ const createStyles = (colors: typeof lightColors) =>
     title: {
       fontFamily: theme.typography.fontFamily.headline,
       fontSize: theme.typography.size["2xl"],
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.sm,
     },
@@ -696,6 +696,6 @@ const createStyles = (colors: typeof lightColors) =>
     },
     footerLink: {
       color: colors.primary,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
     },
   });

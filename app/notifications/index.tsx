@@ -188,7 +188,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     moreButton: {
       padding: theme.spacing.sm,
@@ -211,7 +211,7 @@ const createStyles = (colors: typeof lightColors) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.base,
       paddingHorizontal: theme.spacing.xs,
@@ -219,7 +219,7 @@ const createStyles = (colors: typeof lightColors) =>
     markAllText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -245,7 +245,7 @@ const createStyles = (colors: typeof lightColors) =>
     emptyTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.xs,
     },
@@ -272,7 +272,7 @@ const createStyles = (colors: typeof lightColors) =>
     endOfUpdatesText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 2,

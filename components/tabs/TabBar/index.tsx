@@ -33,7 +33,7 @@ const tabItemBaseStyle = {
 const tabLabelBaseStyle = {
   fontFamily: typography.fontFamily.label,
   fontSize: 10,
-  fontWeight: typography.fontWeight.semibold as any,
+  fontWeight: typography.fontWeight.semibold,
   marginTop: theme.spacing.xs,
   textTransform: "uppercase" as const,
   letterSpacing: 0.5,
@@ -90,7 +90,7 @@ export const TabBar: React.FC<BottomTabBarProps> = ({
         return "home";
       case "loans":
         return "payments";
-      case "savings":
+      case "contributions":
         return "account-balance-wallet";
       case "profile":
         return "person";
@@ -105,8 +105,8 @@ export const TabBar: React.FC<BottomTabBarProps> = ({
         return "Home";
       case "loans":
         return "Loans";
-      case "savings":
-        return "Savings";
+      case "contributions":
+        return "Contributions";
       case "profile":
         return "Profile";
       default:

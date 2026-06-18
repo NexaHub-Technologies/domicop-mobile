@@ -12,6 +12,7 @@ import { useTheme, lightColors } from "@/contexts/ThemeContext";
 import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
 import type { Profile } from "@/lib/types/sign-up";
+import { getInitials, formatDate } from "@/data/mockData";
 
 interface ProfileHeaderProps {
   profile: Profile | null;
@@ -44,7 +45,7 @@ const createStyles = (colors: typeof lightColors) =>
     navTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       flex: 1,
       textAlign: "center",
@@ -81,7 +82,7 @@ const createStyles = (colors: typeof lightColors) =>
     avatarText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["3xl"],
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     editIconContainer: {
@@ -111,7 +112,7 @@ const createStyles = (colors: typeof lightColors) =>
     name: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["2xl"],
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.base,
     },
@@ -128,7 +129,7 @@ const createStyles = (colors: typeof lightColors) =>
     memberBadgeText: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.primary,
     },
     memberSince: {
@@ -147,27 +148,12 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ profile, isLoading
   const styles = createStyles(colors);
   const scale = useSharedValue(1);
 
-  const getInitials = (name: string): string => {
-    return name
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
-  };
-
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-  };
-
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
 
   const handleEditAvatarPress = () => {
     // Handle avatar edit
-    console.log("Edit avatar pressed");
   };
 
   const handlePressIn = () => {

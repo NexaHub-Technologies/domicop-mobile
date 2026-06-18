@@ -6,8 +6,7 @@ import { ThemeProvider, useTheme } from "@/contexts/ThemeContext";
 // IMPORTANT: Use your Paystack PUBLIC key (pk_test_... or pk_live_...)
 // NEVER use secret keys (sk_...) in client-side code
 const PAYSTACK_PUBLIC_KEY =
-  process.env.EXPO_PUBLIC_PAYSTACK_PUBLIC_KEY ||
-  "pk_test_3191ec56dc674579cfabfd3ac88e97c1c71b851f";
+  (process.env.EXPO_PUBLIC_PAYSTACK_PUBLIC_KEY as string) || "";
 
 function RootLayoutContent() {
   const { isDarkMode } = useTheme();
@@ -29,12 +28,6 @@ function RootLayoutContent() {
         />
         <Stack.Screen
           name="(auth)"
-          options={{
-            gestureEnabled: false,
-          }}
-        />
-        <Stack.Screen
-          name="(onboarding)"
           options={{
             gestureEnabled: false,
           }}

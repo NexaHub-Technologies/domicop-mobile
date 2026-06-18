@@ -53,7 +53,7 @@ const createStyles = (colors: typeof lightColors) =>
     label: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.secondary,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -62,7 +62,7 @@ const createStyles = (colors: typeof lightColors) =>
     value: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     copyButton: {

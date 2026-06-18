@@ -279,7 +279,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -293,7 +293,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     title: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["2xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onSurface,
       marginBottom: theme.spacing.xs,
     },
@@ -327,7 +327,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     statusLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: `${colors.onPrimary}80`,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -335,7 +335,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     statusTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
       marginTop: 4,
     },
@@ -399,7 +399,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     settingsItemLabel: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     settingsItemSubtitle: {
@@ -411,7 +411,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -435,7 +435,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     tipTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: 4,
     },
@@ -452,7 +452,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     logoutText: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.error,
     },
     bottomPadding: {

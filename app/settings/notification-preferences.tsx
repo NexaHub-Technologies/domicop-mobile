@@ -289,7 +289,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -303,7 +303,7 @@ const createStyles = (colors: typeof lightColors) =>
     title: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["2xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onSurface,
       marginBottom: theme.spacing.xs,
     },
@@ -343,13 +343,13 @@ const createStyles = (colors: typeof lightColors) =>
     categoryTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     categorySubtitle: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -390,7 +390,7 @@ const createStyles = (colors: typeof lightColors) =>
     saveButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     restoreButton: {
@@ -400,7 +400,7 @@ const createStyles = (colors: typeof lightColors) =>
     restoreButtonText: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
     },
     bottomPadding: {

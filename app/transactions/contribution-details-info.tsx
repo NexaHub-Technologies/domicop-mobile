@@ -18,6 +18,8 @@ import { useTheme, lightColors } from "@/contexts/ThemeContext";
 import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
 import { mockSavingsTransactions, formatCurrency } from "@/data/mockData";
+import { getAllocationSummary } from "@/lib/utils/contributionAllocation";
+import { AllocationBreakdown } from "@/components/savings/AllocationBreakdown";
 
 interface DataRowProps {
   label: string;
@@ -77,7 +79,7 @@ const createDataRowStyles = (colors: typeof lightColors) =>
     label: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -86,7 +88,7 @@ const createDataRowStyles = (colors: typeof lightColors) =>
     value: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     copyButton: {
@@ -105,6 +107,8 @@ export default function ContributionDetailsInfoScreen() {
   // Find transaction by ID
   const transaction =
     mockSavingsTransactions.find((t) => t.id === id) || mockSavingsTransactions[0];
+
+  const allocationSummary = getAllocationSummary(Math.abs(transaction.amount));
 
   const handleBack = () => {
     router.back();
@@ -188,10 +192,19 @@ export default function ContributionDetailsInfoScreen() {
           </TouchableOpacity>
         </Animated.View>
 
+        {/* Allocation Breakdown */}
+        <Animated.View entering={FadeInUp.delay(200).duration(400)}>
+          <AllocationBreakdown
+            amount={allocationSummary.total}
+            allocation={allocationSummary.allocation}
+            percentages={allocationSummary.percentages}
+          />
+        </Animated.View>
+
         {/* General Information */}
         <Animated.View
-          entering={FadeInUp.delay(200).duration(400)}
-          style={styles.section}
+          entering={FadeInUp.delay(300).duration(400)}
+          style={styles.sectionCard}
         >
           <Text style={styles.sectionTitle}>General Information</Text>
 
@@ -256,8 +269,8 @@ export default function ContributionDetailsInfoScreen() {
 
         {/* Data Rows */}
         <Animated.View
-          entering={FadeInUp.delay(300).duration(400)}
-          style={styles.section}
+          entering={FadeInUp.delay(400).duration(400)}
+          style={styles.sectionCard}
         >
           <Text style={styles.sectionTitle}>Transaction Details</Text>
 
@@ -346,7 +359,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -371,13 +384,13 @@ const createStyles = (colors: typeof lightColors) =>
     statusText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.success,
     },
     amount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: 32,
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.success,
       marginBottom: theme.spacing.base,
     },
@@ -387,7 +400,7 @@ const createStyles = (colors: typeof lightColors) =>
     transactionIdLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -401,21 +414,28 @@ const createStyles = (colors: typeof lightColors) =>
     transactionId: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     copyIcon: {
       marginLeft: 4,
     },
-    section: {
+    sectionCard: {
+      backgroundColor: colors.surfaceContainerLow,
+      borderWidth: 1,
+      borderColor: `${colors.outline}30`,
+      borderRadius: theme.borderRadius.xl,
+      padding: theme.spacing.lg,
+      gap: theme.spacing.base,
       marginBottom: theme.spacing.lg,
     },
     sectionTitle: {
-      fontFamily: typography.fontFamily.headline,
-      fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
-      color: colors.onSurface,
-      marginBottom: theme.spacing.base,
+      fontFamily: typography.fontFamily.label,
+      fontSize: typography.size.xs,
+      fontWeight: typography.fontWeight.bold,
+      color: colors.secondary,
+      textTransform: "uppercase",
+      letterSpacing: 0.5,
     },
     bentoRow: {
       flexDirection: "row",
@@ -441,7 +461,7 @@ const createStyles = (colors: typeof lightColors) =>
     bentoLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -450,7 +470,7 @@ const createStyles = (colors: typeof lightColors) =>
     bentoValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     noteContainer: {
@@ -495,7 +515,7 @@ const createStyles = (colors: typeof lightColors) =>
     downloadButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     shareButton: {
@@ -512,7 +532,7 @@ const createStyles = (colors: typeof lightColors) =>
     shareButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
     bottomPadding: {

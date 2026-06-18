@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useTheme } from '@/contexts/ThemeContext';
 
-function SavingsLayoutContent() {
+function ContributionsLayoutContent() {
   const { colors, isDarkMode } = useTheme();
 
   return (
@@ -26,10 +26,10 @@ function SavingsLayoutContent() {
   );
 }
 
-export default function SavingsLayout() {
+export default function ContributionsLayout() {
   return (
     <SafeAreaProvider>
-      <SavingsLayoutContent />
+      <ContributionsLayoutContent />
     </SafeAreaProvider>
   );
 }

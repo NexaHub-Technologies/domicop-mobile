@@ -25,7 +25,6 @@ export default function ResetPasswordScreen() {
   const passwordsMatch = newPassword === confirmPassword && newPassword !== "";
 
   const handleUpdatePassword = () => {
-    console.log("Update Password", { newPassword });
   };
 
   const handleSignIn = () => {
@@ -166,6 +165,6 @@ const createStyles = (colors: typeof lightColors) =>
     },
     signInLinkText: {
       color: colors.primary,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
     },
   });

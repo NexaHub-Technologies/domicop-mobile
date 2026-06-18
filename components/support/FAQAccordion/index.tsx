@@ -119,7 +119,7 @@ const createStyles = (colors: FAQAccordionColors) =>
     question: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurface,
       flex: 1,
     },

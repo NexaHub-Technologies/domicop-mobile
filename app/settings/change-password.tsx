@@ -257,7 +257,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) => StyleS
   headerTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.lg,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
   },
   scrollView: {
     flex: 1,
@@ -284,7 +284,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) => StyleS
   label: {
     fontFamily: typography.fontFamily.label,
     fontSize: typography.size.xs,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onSurfaceVariant,
     textTransform: 'uppercase',
     letterSpacing: 1,
@@ -350,7 +350,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) => StyleS
   saveButtonText: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.base,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onPrimary,
   },
 });

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
 import Animated, { FadeIn, FadeInUp } from "react-native-reanimated";
 import { useTheme, lightColors } from "@/contexts/ThemeContext";
@@ -18,13 +18,14 @@ import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
 import { AmountInput } from "@/components/forms/AmountInput";
 import { DropdownSelect } from "@/components/forms/DropdownSelect";
-import { SummaryCard } from "@/components/savings/SummaryCard";
 import { Input } from "@/components/common/Input";
 import { getContributionMonths, MIN_CONTRIBUTION_AMOUNT } from "@/data/mockData";
 import { SuccessModal } from "@/components/modals/SuccessModal";
 import { usePaystackPayment } from "@/hooks/usePaystackPayment";
 import { contributionsApi } from "@/lib/api/contributions.api";
 import { InfoModal } from "@/components/modals/InfoModal";
+import { getAllocationSummary } from "@/lib/utils/contributionAllocation";
+import { AllocationBreakdown } from "@/components/savings/AllocationBreakdown";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
@@ -32,7 +33,7 @@ export default function AddContributionScreen() {
   const router = useRouter();
   const { colors, isDarkMode } = useTheme();
   const insets = useSafeAreaInsets();
-  const styles = getStyles(colors, insets.bottom);
+  const styles = getStyles(colors);
   const { initiateContributionPayment } = usePaystackPayment();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -101,6 +102,10 @@ export default function AddContributionScreen() {
             const year = parseInt(yearStr, 10);
             const formattedMonth = `${yearStr}-${monthStr}`;
 
+            const allocation = getAllocationSummary(
+              Math.round(verification.data.amount / 100),
+            );
+
             const payload = {
               amount: Math.round(verification.data.amount / 100),
               month: formattedMonth,
@@ -114,12 +119,8 @@ export default function AddContributionScreen() {
                 | "verified"
                 | "rejected",
               notes: notes.trim() || undefined,
+              allocation: allocation.allocation,
             };
-
-            console.log(
-              "Storing contribution with payload:",
-              JSON.stringify(payload, null, 2),
-            );
 
             await contributionsApi.storeVerifiedContribution(payload);
           } catch (storeError) {
@@ -152,7 +153,7 @@ export default function AddContributionScreen() {
 
   const handleSuccessClose = () => {
     setShowSuccess(false);
-    router.replace("/(tabs)/savings");
+    router.replace("/(tabs)/contributions");
   };
 
   const handleBack = () => {
@@ -160,9 +161,15 @@ export default function AddContributionScreen() {
   };
 
   const numericAmount = parseFloat(amount.replace(/,/g, "")) || 0;
+  const hasTypedAmount = amount.length > 0;
+  const isBelowMinimum =
+    hasTypedAmount && numericAmount > 0 && numericAmount < MIN_CONTRIBUTION_AMOUNT;
+  const isAmountValid = !hasTypedAmount || numericAmount >= MIN_CONTRIBUTION_AMOUNT;
+  const allocationSummary =
+    numericAmount > 0 && !isBelowMinimum ? getAllocationSummary(numericAmount) : null;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <StatusBar style={isDarkMode ? "light" : "dark"} />
 
       {/* Header */}
@@ -218,7 +225,7 @@ export default function AddContributionScreen() {
               <AmountInput
                 value={amount}
                 onChangeText={setAmount}
-                error={errors.amount}
+                error={isBelowMinimum ? `Minimum contribution is ₦${MIN_CONTRIBUTION_AMOUNT.toLocaleString()}` : undefined}
                 label="Contribution Amount"
                 minAmount={MIN_CONTRIBUTION_AMOUNT}
                 maxAmount={10000000}
@@ -251,10 +258,14 @@ export default function AddContributionScreen() {
               />
             </Animated.View>
 
-            {/* Summary Card */}
-            {numericAmount > 0 && (
-              <Animated.View entering={FadeInUp.delay(400).duration(400)}>
-                <SummaryCard amount={numericAmount} />
+            {/* Allocation Breakdown */}
+            {allocationSummary && (
+              <Animated.View entering={FadeInUp.delay(450).duration(400)}>
+                <AllocationBreakdown
+                  amount={allocationSummary.total}
+                  allocation={allocationSummary.allocation}
+                  percentages={allocationSummary.percentages}
+                />
               </Animated.View>
             )}
 
@@ -262,8 +273,8 @@ export default function AddContributionScreen() {
             <Animated.View entering={FadeInUp.delay(500).duration(400)}>
               <AnimatedTouchable
                 onPress={handleSubmit}
-                disabled={isSubmitting}
-                style={[styles.submitButton, isSubmitting && styles.submitButtonDisabled]}
+                disabled={!isAmountValid || isSubmitting}
+                style={[styles.submitButton, (!isAmountValid || isSubmitting) && styles.submitButtonDisabled]}
                 activeOpacity={0.8}
               >
                 {isSubmitting ? (
@@ -316,11 +327,11 @@ export default function AddContributionScreen() {
         icon="info"
         iconColor={colors.error}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
-const getStyles = (colors: typeof lightColors, bottomInset: number) =>
+const getStyles = (colors: typeof lightColors) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -350,7 +361,7 @@ const getStyles = (colors: typeof lightColors, bottomInset: number) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     keyboardView: {
       flex: 1,
@@ -380,7 +391,7 @@ const getStyles = (colors: typeof lightColors, bottomInset: number) =>
     heroSubtitle: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: `${colors.onPrimary}80`,
       textTransform: "uppercase",
       letterSpacing: 2,
@@ -389,7 +400,7 @@ const getStyles = (colors: typeof lightColors, bottomInset: number) =>
     heroTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["2xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onPrimary,
       marginBottom: 4,
     },
@@ -444,7 +455,7 @@ const getStyles = (colors: typeof lightColors, bottomInset: number) =>
     submitButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     complianceContainer: {
@@ -472,7 +483,7 @@ const getStyles = (colors: typeof lightColors, bottomInset: number) =>
     complianceTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: 4,
     },

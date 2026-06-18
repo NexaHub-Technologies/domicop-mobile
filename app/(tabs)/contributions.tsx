@@ -22,19 +22,13 @@ import Animated, {
 import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
 import { PortfolioCard } from "@/components/savings/PortfolioCard";
-import { formatCurrency } from "@/data/mockData";
+import { formatCurrency, formatMonth } from "@/data/mockData";
 import { useTheme, lightColors } from "@/contexts/ThemeContext";
 import { useContributions } from "@/hooks/useContributions";
 import { useSavingsSummary } from "@/hooks/useSavingsSummary";
 import { Contribution } from "@/lib/types/contributions";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
-
-const formatMonth = (monthStr: string): string => {
-  const [year, month] = monthStr.split("-");
-  const date = new Date(parseInt(year), parseInt(month) - 1);
-  return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-};
 
 const getStatusColor = (status: string, colors: typeof lightColors): string => {
   switch (status) {
@@ -126,6 +120,7 @@ export default function SavingsScreen() {
 
   const {
     contributions,
+    totalBalance,
     isLoading: isLoadingContributions,
     isRefreshing: isRefreshingContributions,
     error: contributionsError,
@@ -152,7 +147,7 @@ export default function SavingsScreen() {
   };
 
   const handleTransactionPress = (id: string) => {
-    router.push(`/savings/${id}`);
+    router.push(`/contributions/${id}`);
   };
 
   const handleRetry = () => {
@@ -174,7 +169,7 @@ export default function SavingsScreen() {
         <View style={dynamicStyles.headerContent}>
           <View style={dynamicStyles.backButton} />
           <Text style={[dynamicStyles.headerTitle, { color: colors.primary }]}>
-            Savings
+            Contributions
           </Text>
           <View style={dynamicStyles.backButton} />
         </View>
@@ -204,7 +199,7 @@ export default function SavingsScreen() {
         )}
 
         <PortfolioCard
-          totalSavings={summary?.total_savings ?? null}
+          totalSavings={totalBalance}
           paidThisMonth={summary?.paid_this_month ?? false}
           currentMonth={summary?.current_month ?? null}
           isLoading={isLoadingSummary}
@@ -300,7 +295,7 @@ export default function SavingsScreen() {
             </View>
             <Text style={dynamicStyles.emptyTitle}>No Contributions Yet</Text>
             <Text style={dynamicStyles.emptyText}>
-              Your savings balance is ₦{formatCurrency(summary?.total_savings ?? 0)}.
+              Your contribution balance is ₦{formatCurrency(totalBalance)}.
               {"\n"}Start making contributions to build your savings with DOMICOP.
             </Text>
             <TouchableOpacity
@@ -353,7 +348,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -401,7 +396,7 @@ const createStyles = (colors: typeof lightColors) =>
     addButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     loadingContainer: {
@@ -438,7 +433,7 @@ const createStyles = (colors: typeof lightColors) =>
     retryButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     historySection: {
@@ -454,7 +449,7 @@ const createStyles = (colors: typeof lightColors) =>
     historyTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     transactionsList: {
@@ -480,7 +475,7 @@ const createStyles = (colors: typeof lightColors) =>
     viewAllText: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.primary,
     },
     emptyContainer: {
@@ -501,7 +496,7 @@ const createStyles = (colors: typeof lightColors) =>
     emptyTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.sm,
     },
@@ -526,7 +521,7 @@ const createStyles = (colors: typeof lightColors) =>
     emptyButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     bottomPadding: {
@@ -563,7 +558,7 @@ const createTransactionStyles = (colors: typeof lightColors) =>
     transactionTitle: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -578,12 +573,12 @@ const createTransactionStyles = (colors: typeof lightColors) =>
     transactionAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       marginBottom: 2,
     },
     transactionStatus: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
     },
   });

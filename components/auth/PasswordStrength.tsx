@@ -124,7 +124,7 @@ const createStyles = (colors: typeof lightColors) =>
     label: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 1, // 11px
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       textTransform: "uppercase",
       letterSpacing: typography.letterSpacing.wider,
       marginTop: theme.spacing.xs,

@@ -57,7 +57,7 @@ const createStyles = (colors: typeof lightColors) =>
     loanTitle: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -74,7 +74,7 @@ const createStyles = (colors: typeof lightColors) =>
     statusText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       textTransform: "uppercase",
       letterSpacing: 0.5,
     },
@@ -91,7 +91,7 @@ const createStyles = (colors: typeof lightColors) =>
     amountLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -100,7 +100,7 @@ const createStyles = (colors: typeof lightColors) =>
     amountValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     amountValuePrimary: {
@@ -117,13 +117,13 @@ const createStyles = (colors: typeof lightColors) =>
     progressLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurfaceVariant,
     },
     progressPercent: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     progressBarBackground: {
@@ -158,7 +158,7 @@ const createStyles = (colors: typeof lightColors) =>
     },
     nextPaymentValue: {
       color: colors.onSurface,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
     },
     manageButton: {
       paddingHorizontal: theme.spacing.md,
@@ -170,7 +170,7 @@ const createStyles = (colors: typeof lightColors) =>
     manageButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
   });

@@ -7,20 +7,9 @@ import { theme } from "@/styles/theme";
 import { typography } from "@/constants/typography";
 import { dashboard } from "@/lib/api/dashboard.api";
 import type { DashboardSummary } from "@/lib/types/dashboard";
+import { formatCurrencyNoSign, formatDate } from "@/data/mockData";
 
 const AnimatedView = Animated.createAnimatedComponent(View);
-
-const formatCurrencyNoSign = (amount: number): string => {
-  return amount.toLocaleString("en-NG");
-};
-
-const formatDate = (dateString: string): string => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-NG", {
-    day: "numeric",
-    month: "short",
-  });
-};
 
 const createStyles = (colors: typeof lightColors) =>
   StyleSheet.create({
@@ -55,7 +44,7 @@ const createStyles = (colors: typeof lightColors) =>
     primaryLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primaryFixed,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -64,7 +53,7 @@ const createStyles = (colors: typeof lightColors) =>
     primaryAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["3xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onPrimary,
     },
     growthBadge: {
@@ -82,7 +71,7 @@ const createStyles = (colors: typeof lightColors) =>
     growthText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     watermarkContainer: {
@@ -111,7 +100,7 @@ const createStyles = (colors: typeof lightColors) =>
     secondaryLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -120,7 +109,7 @@ const createStyles = (colors: typeof lightColors) =>
     secondaryAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["3xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onSurface,
     },
     loanDetails: {
@@ -135,7 +124,7 @@ const createStyles = (colors: typeof lightColors) =>
     nextPaymentLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -144,7 +133,7 @@ const createStyles = (colors: typeof lightColors) =>
     nextPaymentValue: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.primary,
     },
     progressBadge: {
@@ -156,7 +145,7 @@ const createStyles = (colors: typeof lightColors) =>
     progressText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
     secondaryWatermarkContainer: {
@@ -188,7 +177,7 @@ const createStyles = (colors: typeof lightColors) =>
     retryButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     noLoanContainer: {

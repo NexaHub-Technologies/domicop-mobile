@@ -128,7 +128,7 @@ const createStyles = (colors: ProfileImageColors) =>
     initialsText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["3xl"],
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     loadingOverlay: {

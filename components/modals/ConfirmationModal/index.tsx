@@ -123,7 +123,7 @@ const createStyles = (colors: ConfirmationModalColors) =>
     title: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       textAlign: "center",
       marginBottom: theme.spacing.sm,
@@ -152,7 +152,7 @@ const createStyles = (colors: ConfirmationModalColors) =>
     cancelButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     confirmButton: {
@@ -166,7 +166,7 @@ const createStyles = (colors: ConfirmationModalColors) =>
     confirmButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onPrimary,
     },
     destructiveButton: {

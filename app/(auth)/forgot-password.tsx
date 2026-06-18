@@ -22,7 +22,6 @@ export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState("");
 
   const handleSendResetLink = () => {
-    console.log("Send Reset Link", { email });
   };
 
   const handleSignIn = () => {
@@ -161,7 +160,7 @@ const createStyles = (colors: typeof lightColors) =>
     },
     signInLinkText: {
       color: colors.primary,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
     },
     footer: {
       marginTop: theme.spacing.xl,
@@ -176,7 +175,7 @@ const createStyles = (colors: typeof lightColors) =>
     footerLink: {
       fontFamily: theme.typography.fontFamily.headline,
       fontSize: theme.typography.size.base,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
       color: colors.primary,
     },
   });

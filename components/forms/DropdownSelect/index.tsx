@@ -127,7 +127,7 @@ const createStyles = (colors: DropdownColors) =>
     label: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.secondary,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -146,7 +146,7 @@ const createStyles = (colors: DropdownColors) =>
     selectText: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.onSurface,
     },
     placeholderText: {
@@ -175,7 +175,7 @@ const createStyles = (colors: DropdownColors) =>
     modalTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     optionsList: {
@@ -205,7 +205,7 @@ const createStyles = (colors: DropdownColors) =>
       color: colors.onSurface,
     },
     optionTextSelected: {
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.primary,
     },
   });

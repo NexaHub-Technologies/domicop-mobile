@@ -129,7 +129,7 @@ const createStyles = (colors: typeof lightColors) =>
     brandName: {
       fontFamily: theme.typography.fontFamily.headline,
       fontSize: theme.typography.size["4xl"],
-      fontWeight: theme.typography.fontWeight.extrabold as any,
+      fontWeight: theme.typography.fontWeight.extrabold,
       color: colors.onSurface,
       marginBottom: theme.spacing.md,
       letterSpacing: theme.typography.letterSpacing.tight,
@@ -137,7 +137,7 @@ const createStyles = (colors: typeof lightColors) =>
     tagline: {
       fontFamily: theme.typography.fontFamily.body,
       fontSize: theme.typography.size.md,
-      fontWeight: theme.typography.fontWeight.medium as any,
+      fontWeight: theme.typography.fontWeight.medium,
       color: colors.secondary,
       textAlign: "center",
       maxWidth: 320,

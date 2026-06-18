@@ -215,7 +215,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -245,7 +245,7 @@ const createStyles = (colors: typeof lightColors) =>
     loanTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: 4,
     },
@@ -263,7 +263,7 @@ const createStyles = (colors: typeof lightColors) =>
     statusText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       letterSpacing: 0.5,
     },
     balanceCard: {
@@ -293,7 +293,7 @@ const createStyles = (colors: typeof lightColors) =>
     balanceLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: `${colors.onPrimary}70`,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -302,13 +302,13 @@ const createStyles = (colors: typeof lightColors) =>
     balanceValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     balanceValuePaid: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: "#86efac",
     },
     remainingContainer: {
@@ -320,7 +320,7 @@ const createStyles = (colors: typeof lightColors) =>
     remainingLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: `${colors.onPrimary}90`,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -329,7 +329,7 @@ const createStyles = (colors: typeof lightColors) =>
     remainingValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["2xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onPrimary,
     },
     section: {
@@ -339,7 +339,7 @@ const createStyles = (colors: typeof lightColors) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.base,
     },
@@ -361,7 +361,7 @@ const createStyles = (colors: typeof lightColors) =>
     progressPercent: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     progressText: {
@@ -405,7 +405,7 @@ const createStyles = (colors: typeof lightColors) =>
     detailValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     actionContainer: {
@@ -429,7 +429,7 @@ const createStyles = (colors: typeof lightColors) =>
     paymentButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     bottomPadding: {

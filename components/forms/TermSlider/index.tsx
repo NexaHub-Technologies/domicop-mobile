@@ -62,7 +62,7 @@ const createStyles = (colors: TermSliderColors) =>
     label: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -76,7 +76,7 @@ const createStyles = (colors: TermSliderColors) =>
     valueText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     sliderContainer: {
@@ -105,7 +105,7 @@ const createStyles = (colors: TermSliderColors) =>
     labelText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       letterSpacing: 0.5,
     },

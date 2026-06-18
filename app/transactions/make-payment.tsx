@@ -57,8 +57,6 @@ export default function MakePaymentScreen() {
 
   const quickAmounts = ["1,000", "5,000", "10,000", "50,000"];
 
-  // Removed mock payment methods - using Paystack instead
-
   const handleBack = () => {
     router.back();
   };
@@ -137,7 +135,6 @@ export default function MakePaymentScreen() {
       },
       onSuccess: (response) => {
         setIsProcessing(false);
-        console.log("Loan payment successful:", response);
         setShowSuccess(true);
       },
       onCancel: () => {
@@ -449,7 +446,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -463,7 +460,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.base,
     },
@@ -510,7 +507,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     paymentTypeTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -542,7 +539,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     loanTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -564,7 +561,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     loanBalance: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     checkIcon: {
@@ -586,7 +583,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     currencySymbol: {
       fontFamily: typography.fontFamily.headline,
       fontSize: theme.spacing["2xl"],
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginRight: theme.spacing.sm,
     },
@@ -594,7 +591,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
       flex: 1,
       fontFamily: typography.fontFamily.headline,
       fontSize: theme.spacing["2xl"],
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       padding: 0,
     },
@@ -611,7 +608,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     quickAmountText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     methodCard: {
@@ -642,7 +639,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     methodName: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
       marginBottom: 2,
     },
@@ -660,7 +657,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     summaryTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginBottom: theme.spacing.base,
     },
@@ -678,7 +675,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     summaryValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onSurface,
     },
     totalRow: {
@@ -690,13 +687,13 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     totalLabel: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
     },
     totalValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
     bottomPadding: {
@@ -738,7 +735,7 @@ const createStyles = (colors: typeof lightColors, bottomInset: number) =>
     confirmButtonText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
   });

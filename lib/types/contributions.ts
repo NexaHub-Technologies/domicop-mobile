@@ -54,6 +54,15 @@ export interface ContributionListResponse {
   total: number;
   page: number;
   limit: number;
+  totalBalance: number;
+  yearBalance: number;
+}
+
+export interface ContributionAllocation {
+  shares: number;
+  social: number;
+  savings: number;
+  deposit: number;
 }
 
 export interface StoreVerifiedContributionInput {
@@ -66,6 +75,7 @@ export interface StoreVerifiedContributionInput {
   payment_method?: string;
   payment_status?: "pending" | "verified" | "rejected";
   notes?: string;
+  allocation?: ContributionAllocation;
 }
 
 export function mapPaymentStatusToContributionStatus(
@@ -108,5 +118,7 @@ export function transformContributionsResponse(
     total: apiResponse.contributions?.length || 0,
     page: 0,
     limit: 0,
+    totalBalance: Math.round((apiResponse.total_balance || 0) / 100),
+    yearBalance: Math.round((apiResponse.year_balance || 0) / 100),
   };
 }

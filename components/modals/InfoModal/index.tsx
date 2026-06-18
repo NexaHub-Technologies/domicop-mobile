@@ -156,7 +156,7 @@ const createStyles = (colors: InfoModalColors) =>
     title: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       textAlign: "center",
       marginBottom: theme.spacing.sm,
@@ -184,7 +184,7 @@ const createStyles = (colors: InfoModalColors) =>
     primaryButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     closeButton: {

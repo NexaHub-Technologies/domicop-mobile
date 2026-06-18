@@ -64,21 +64,6 @@ export interface BankOption {
 }
 
 // ============================================
-// ONBOARDING TYPES (Legacy - kept for compatibility)
-// ============================================
-
-export interface Step3Data {
-  avatar_url?: string;
-  next_of_kin?: string;
-}
-
-export interface OnboardingErrors {
-  next_of_kin?: string;
-  avatar_url?: string;
-  general?: string;
-}
-
-// ============================================
 // PAYSTACK VERIFICATION TYPES
 // ============================================
 

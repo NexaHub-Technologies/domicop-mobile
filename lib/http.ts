@@ -4,7 +4,6 @@ import { session } from "./session";
 const BASE_URL =
   Constants.expoConfig?.extra?.apiBaseUrl || process.env.EXPO_PUBLIC_API_BASE_URL;
 
-console.log('DEBUG BASE_URL:', BASE_URL, 'Constants.expoConfig?.extra:', Constants.expoConfig?.extra);
 
 if (!BASE_URL) {
   console.error(

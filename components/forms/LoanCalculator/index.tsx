@@ -90,7 +90,7 @@ const createStyles = (colors: LoanCalculatorColors) =>
     rateLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -108,7 +108,7 @@ const createStyles = (colors: LoanCalculatorColors) =>
     rateInput: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       width: 50,
       textAlign: "right",
@@ -117,7 +117,7 @@ const createStyles = (colors: LoanCalculatorColors) =>
     rateSuffix: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       marginLeft: 2,
     },
@@ -140,7 +140,7 @@ const createStyles = (colors: LoanCalculatorColors) =>
     summaryValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["2xl"],
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     divider: {
@@ -161,7 +161,7 @@ const createStyles = (colors: LoanCalculatorColors) =>
     detailLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.inverseOnSurface,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -170,7 +170,7 @@ const createStyles = (colors: LoanCalculatorColors) =>
     detailValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     interestRow: {
@@ -189,7 +189,7 @@ const createStyles = (colors: LoanCalculatorColors) =>
     interestValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
   });

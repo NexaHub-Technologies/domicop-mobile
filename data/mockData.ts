@@ -101,7 +101,7 @@ export const mockLoanData: LoanData = {
 // Quick Actions (only 2 as per requirements)
 export const mockQuickActions: QuickAction[] = [
   {
-    id: "deposit",
+    id: "add contribution",
     icon: "add-circle",
     label: "Deposit",
     route: "/transactions/add-contribution",
@@ -351,6 +351,36 @@ export const getTransactionBgColor = (type: TransactionType): string => {
       return "#f1f5f9"; // slate-100
     default:
       return "#f1f5f9"; // slate-100
+  }
+};
+
+export const formatDate = (dateStr: string, options?: Intl.DateTimeFormatOptions): string => {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("en-NG", options ?? { day: "numeric", month: "short", year: "numeric" });
+};
+
+export const formatMonth = (monthStr: string, options?: Intl.DateTimeFormatOptions): string => {
+  const [year, month] = monthStr.split("-");
+  const date = new Date(parseInt(year), parseInt(month) - 1);
+  return date.toLocaleDateString("en-US", options ?? { month: "long", year: "numeric" });
+};
+
+export const getDefaultTitle = (type: string, date: string): string => {
+  switch (type) {
+    case "contribution":
+      return "Monthly Contribution";
+    case "interest":
+      return "Interest Credited";
+    case "loan_repayment":
+      return "Loan Repayment";
+    case "fee":
+      return "Processing Fee";
+    case "withdrawal":
+      return "Withdrawal";
+    default: {
+      const d = new Date(date);
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
   }
 };
 
@@ -694,7 +724,11 @@ export const contributionTypes = [
 ];
 
 // Minimum contribution amount (in Naira)
-export const MIN_CONTRIBUTION_AMOUNT = 5000;
+export const SHARES_FIXED = 4000;
+export const SOCIAL_FIXED = 1000;
+export const MAX_SAVINGS = 46000;
+export const STANDARD_MAX = 51000;
+export const MIN_CONTRIBUTION_AMOUNT = 6000;
 
 // Administrative fee rate (0.5%)
 export const ADMIN_FEE_RATE = 0.005;

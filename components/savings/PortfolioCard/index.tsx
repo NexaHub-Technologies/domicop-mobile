@@ -51,7 +51,7 @@ const createStyles = (colors: typeof lightColors) =>
     balanceLabel: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: `${colors.onPrimary}90`,
       marginBottom: theme.spacing.sm,
     },
@@ -64,7 +64,7 @@ const createStyles = (colors: typeof lightColors) =>
     balanceAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["3xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onPrimary,
     },
     growthBadge: {
@@ -76,7 +76,7 @@ const createStyles = (colors: typeof lightColors) =>
     growthText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     progressContainer: {
@@ -93,7 +93,7 @@ const createStyles = (colors: typeof lightColors) =>
     progressLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: `${colors.onPrimary}70`,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -102,7 +102,7 @@ const createStyles = (colors: typeof lightColors) =>
     progressValue: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onPrimary,
     },
     monthSection: {
@@ -111,13 +111,13 @@ const createStyles = (colors: typeof lightColors) =>
     monthValue: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.semibold as any,
+      fontWeight: typography.fontWeight.semibold,
       color: colors.onPrimary,
     },
     skeletonAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size["3xl"],
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: `${colors.onPrimary}60`,
     },
   });
@@ -148,7 +148,7 @@ export const PortfolioCard: React.FC<PortfolioCardProps> = ({
         <View style={styles.patternOverlay} />
 
         <View style={styles.balanceContent}>
-          <Text style={styles.balanceLabel}>Total Savings Portfolio</Text>
+          <Text style={styles.balanceLabel}>Total Contributions</Text>
 
           <View style={styles.balanceRow}>
             {isLoading && totalSavings === null ? (

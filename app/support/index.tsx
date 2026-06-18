@@ -211,7 +211,7 @@ const createStyles = (colors: typeof lightColors) => StyleSheet.create({
   headerTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.lg,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
   },
   scrollView: {
     flex: 1,
@@ -233,7 +233,7 @@ const createStyles = (colors: typeof lightColors) => StyleSheet.create({
   heroTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size['2xl'],
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onPrimary,
     marginBottom: theme.spacing.xs,
   },
@@ -313,7 +313,7 @@ const createStyles = (colors: typeof lightColors) => StyleSheet.create({
   quickActionLabel: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.sm,
-    fontWeight: typography.fontWeight.semibold as any,
+    fontWeight: typography.fontWeight.semibold,
     color: colors.onSurface,
     marginBottom: 2,
   },
@@ -331,13 +331,13 @@ const createStyles = (colors: typeof lightColors) => StyleSheet.create({
   faqTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.lg,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onSurface,
   },
   viewAllText: {
     fontFamily: typography.fontFamily.label,
     fontSize: typography.size.sm,
-    fontWeight: typography.fontWeight.semibold as any,
+    fontWeight: typography.fontWeight.semibold,
     color: colors.primary,
   },
   contactContainer: {
@@ -376,13 +376,13 @@ const createStyles = (colors: typeof lightColors) => StyleSheet.create({
   avatarText: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.xl,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onPrimary,
   },
   contactTitle: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.lg,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onSurface,
     marginBottom: theme.spacing.xs,
   },
@@ -412,7 +412,7 @@ const createStyles = (colors: typeof lightColors) => StyleSheet.create({
   contactButtonText: {
     fontFamily: typography.fontFamily.headline,
     fontSize: typography.size.base,
-    fontWeight: typography.fontWeight.bold as any,
+    fontWeight: typography.fontWeight.bold,
     color: colors.onPrimary,
   },
   bottomPadding: {

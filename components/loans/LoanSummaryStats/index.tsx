@@ -39,7 +39,7 @@ const createStyles = (colors: typeof lightColors) =>
     debtLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primaryFixed,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -48,7 +48,7 @@ const createStyles = (colors: typeof lightColors) =>
     debtAmount: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.xl,
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onPrimary,
     },
     watermarkContainer: {
@@ -78,7 +78,7 @@ const createStyles = (colors: typeof lightColors) =>
     dueLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -87,7 +87,7 @@ const createStyles = (colors: typeof lightColors) =>
     dueDate: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.primary,
     },
     warningContainer: {
@@ -99,7 +99,7 @@ const createStyles = (colors: typeof lightColors) =>
     warningText: {
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
       color: colors.error,
     },
   });

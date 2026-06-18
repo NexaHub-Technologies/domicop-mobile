@@ -91,7 +91,7 @@ const createStyles = (colors: NotificationMenuColors) =>
       fontFamily: typography.fontFamily.body,
       fontSize: typography.size.base,
       color: colors.error,
-      fontWeight: typography.fontWeight.medium as any,
+      fontWeight: typography.fontWeight.medium,
     },
     divider: {
       height: 1,

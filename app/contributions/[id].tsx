@@ -22,6 +22,8 @@ import { TransactionDetailCard } from "@/components/savings/TransactionDetailCar
 import { formatCurrency } from "@/data/mockData";
 import { contributionsApi } from "@/lib/api/contributions.api";
 import { Contribution } from "@/lib/types/contributions";
+import { getAllocationSummary } from "@/lib/utils/contributionAllocation";
+import { AllocationBreakdown } from "@/components/savings/AllocationBreakdown";
 import { downloadReceipt, shareReceipt } from "@/utils/receiptGenerator";
 
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
@@ -95,7 +97,6 @@ export default function TransactionDetailScreen() {
 
     try {
       const data = await contributionsApi.getContribution(id);
-      console.log("[fetchContribution] Fetched contribution:", data);
       setContribution(data);
       const cacheKey = `${CACHE_KEY_PREFIX}${id}`;
       await AsyncStorage.setItem(cacheKey, JSON.stringify(data));
@@ -106,7 +107,8 @@ export default function TransactionDetailScreen() {
     } finally {
       setIsLoading(false);
     }
-  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, CACHE_KEY_PREFIX, contributionsApi, AsyncStorage]);
 
   useEffect(() => {
     fetchContribution();
@@ -225,6 +227,7 @@ export default function TransactionDetailScreen() {
     const date = new Date(parseInt(year), parseInt(month) - 1);
     return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   })();
+  const allocationSummary = getAllocationSummary(amount);
 
   const handleDownloadReceipt = async () => {
     try {
@@ -322,7 +325,19 @@ export default function TransactionDetailScreen() {
           </View>
         </Animated.View>
 
+        {/* Allocation Breakdown */}
         <Animated.View entering={FadeInUp.delay(200).duration(400)}>
+          <AllocationBreakdown
+            amount={allocationSummary.total}
+            allocation={allocationSummary.allocation}
+            percentages={allocationSummary.percentages}
+          />
+        </Animated.View>
+
+        <Animated.View
+          entering={FadeInUp.delay(300).duration(400)}
+          style={[styles.sectionCard, { marginTop: theme.spacing.base }]}
+        >
           <Text style={styles.sectionTitle}>General Information</Text>
           <View style={styles.detailsContainer}>
             <TransactionDetailCard
@@ -358,7 +373,7 @@ export default function TransactionDetailScreen() {
         </Animated.View>
 
         <Animated.View
-          entering={FadeInUp.delay(300).duration(400)}
+          entering={FadeInUp.delay(400).duration(400)}
           style={styles.actionsContainer}
         >
           <AnimatedTouchable
@@ -433,7 +448,7 @@ const createStyles = (colors: typeof lightColors) =>
     headerTitle: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
     },
     scrollView: {
       flex: 1,
@@ -470,7 +485,7 @@ const createStyles = (colors: typeof lightColors) =>
     notFoundText: {
       fontFamily: typography.fontFamily.headline,
       fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       marginTop: theme.spacing.base,
     },
@@ -484,7 +499,7 @@ const createStyles = (colors: typeof lightColors) =>
     retryButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.base,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onPrimary,
     },
     amountSection: {
@@ -520,7 +535,7 @@ const createStyles = (colors: typeof lightColors) =>
     amountLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.secondary,
       textTransform: "uppercase",
       letterSpacing: 2,
@@ -529,7 +544,7 @@ const createStyles = (colors: typeof lightColors) =>
     amountValue: {
       fontFamily: typography.fontFamily.headline,
       fontSize: 32,
-      fontWeight: typography.fontWeight.extrabold as any,
+      fontWeight: typography.fontWeight.extrabold,
       color: colors.onSurface,
       marginBottom: theme.spacing.base,
     },
@@ -544,15 +559,23 @@ const createStyles = (colors: typeof lightColors) =>
     statusText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
+    },
+    sectionCard: {
+      backgroundColor: colors.surfaceContainerLow,
+      borderWidth: 1,
+      borderColor: `${colors.outline}30`,
+      borderRadius: theme.borderRadius.xl,
+      padding: theme.spacing.lg,
+      gap: theme.spacing.base,
     },
     sectionTitle: {
-      fontFamily: typography.fontFamily.headline,
-      fontSize: typography.size.lg,
-      fontWeight: typography.fontWeight.bold as any,
-      color: colors.onSurface,
-      marginBottom: theme.spacing.base,
-      paddingHorizontal: theme.spacing.xs,
+      fontFamily: typography.fontFamily.label,
+      fontSize: typography.size.xs,
+      fontWeight: typography.fontWeight.bold,
+      color: colors.secondary,
+      textTransform: "uppercase",
+      letterSpacing: 0.5,
     },
     detailsContainer: {
       gap: theme.spacing.base,
@@ -577,7 +600,7 @@ const createStyles = (colors: typeof lightColors) =>
     actionButtonText: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurface,
       textTransform: "uppercase",
       letterSpacing: 1,

@@ -78,15 +78,12 @@ export const usePaystackPayment = () => {
         ],
       },
       onSuccess: async (response: any) => {
-        console.log('Payment Success:', response);
 
         const verification = await verifyTransaction(response.reference);
-        console.log('Payment verified with Paystack:', verification);
 
         params.onSuccess?.(response, verification);
       },
       onCancel: () => {
-        console.log('Payment Cancelled');
         params.onCancel?.();
       },
       onError: (error) => {
@@ -144,15 +141,12 @@ export const usePaystackPayment = () => {
         ],
       },
       onSuccess: async (response: any) => {
-        console.log('Payment Success:', response);
 
         const verification = await verifyTransaction(response.reference);
-        console.log('Payment verified with Paystack:', verification);
 
         params.onSuccess?.(response, verification);
       },
       onCancel: () => {
-        console.log('Payment Cancelled');
         params.onCancel?.();
       },
       onError: (error) => {

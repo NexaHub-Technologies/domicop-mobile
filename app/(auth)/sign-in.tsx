@@ -208,7 +208,7 @@ const createStyles = (colors: typeof lightColors) =>
     rememberMeText: {
       fontFamily: theme.typography.fontFamily.label,
       fontSize: theme.typography.size.xs,
-      fontWeight: theme.typography.fontWeight.semibold as any,
+      fontWeight: theme.typography.fontWeight.semibold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: theme.typography.letterSpacing.wider,
@@ -216,7 +216,7 @@ const createStyles = (colors: typeof lightColors) =>
     forgotPassword: {
       fontFamily: theme.typography.fontFamily.label,
       fontSize: theme.typography.size.xs,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
       color: colors.primary,
       textTransform: "uppercase",
       letterSpacing: theme.typography.letterSpacing.wider,
@@ -242,6 +242,6 @@ const createStyles = (colors: typeof lightColors) =>
     },
     footerLink: {
       color: colors.primary,
-      fontWeight: theme.typography.fontWeight.bold as any,
+      fontWeight: theme.typography.fontWeight.bold,
     },
   });

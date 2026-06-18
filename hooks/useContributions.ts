@@ -9,6 +9,8 @@ const CACHE_KEY = "cached_contributions";
 
 export function useContributions() {
   const [contributions, setContributions] = useState<Contribution[]>([]);
+  const [totalBalance, setTotalBalance] = useState(0);
+  const [yearBalance, setYearBalance] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,16 +50,23 @@ export function useContributions() {
       const response = await contributionsApi.getMyContributions({ year: currentYear });
       const data = response.data || [];
       setContributions(data);
+      setTotalBalance(response.totalBalance);
+      setYearBalance(response.yearBalance);
       setIsOffline(false);
       await saveToCache(data);
     } catch (err: any) {
+      const netState = await NetInfo.fetch();
       const message = err?.message || "Failed to load contributions";
 
       const cached = await AsyncStorage.getItem(CACHE_KEY);
       if (cached) {
         const parsed = JSON.parse(cached) as Contribution[];
         setContributions(parsed);
-        setIsOffline(true);
+        if (!netState.isConnected) {
+          setIsOffline(true);
+        } else {
+          setError(message);
+        }
       } else {
         setError(message);
       }
@@ -97,6 +106,8 @@ export function useContributions() {
 
   return {
     contributions,
+    totalBalance,
+    yearBalance,
     isLoading,
     isRefreshing,
     error,

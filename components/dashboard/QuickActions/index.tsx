@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, Href } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import Animated, {
   FadeIn,
@@ -19,7 +19,7 @@ const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 interface QuickActionItemProps {
   icon: string;
   label: string;
-  route: string;
+  route: Href;
   index: number;
   colors: typeof lightColors;
 }
@@ -50,7 +50,7 @@ const createQuickActionItemStyles = (colors: typeof lightColors) =>
     actionLabel: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.xs - 2,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 0.5,
@@ -75,7 +75,7 @@ const QuickActionItem: React.FC<QuickActionItemProps> = ({
   }));
 
   const handlePress = () => {
-    router.push(route as any);
+    router.push(route);
   };
 
   const handlePressIn = () => {
@@ -113,7 +113,7 @@ const createStyles = (colors: typeof lightColors) =>
     sectionTitle: {
       fontFamily: typography.fontFamily.label,
       fontSize: typography.size.sm,
-      fontWeight: typography.fontWeight.bold as any,
+      fontWeight: typography.fontWeight.bold,
       color: colors.onSurfaceVariant,
       textTransform: "uppercase",
       letterSpacing: 1,
@@ -143,7 +143,7 @@ export const QuickActions: React.FC = () => {
             key={action.id}
             icon={action.icon}
             label={action.label}
-            route={action.route}
+            route={action.route as Href}
             index={index}
             colors={colors}
           />
