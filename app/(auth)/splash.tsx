@@ -15,7 +15,7 @@ export default function SplashScreen() {
   const styles = createStyles(colors);
 
   const handleGetStarted = () => {
-    router.push("/welcome");
+    router.push("/settings/guidelines?context=onboarding");
   };
 
   return (

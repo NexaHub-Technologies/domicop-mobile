@@ -260,6 +260,13 @@ export const mockProfileSettings: SettingsSection[] = [
         route: "/support",
       },
       {
+        id: "guidelines",
+        icon: "rule",
+        title: "Cooperative Guidelines",
+        subtitle: "Rules and regulations",
+        route: "/settings/guidelines",
+      },
+      {
         id: "privacy",
         icon: "description",
         title: "Privacy Policy",

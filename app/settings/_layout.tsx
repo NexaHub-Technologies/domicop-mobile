@@ -25,6 +25,7 @@ function SettingsLayoutContent() {
         <Stack.Screen name="notification-preferences" />
         <Stack.Screen name="security" />
         <Stack.Screen name="change-password" />
+        <Stack.Screen name="guidelines" />
       </Stack>
     </>
   );
